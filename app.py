@@ -17,6 +17,7 @@ def home():
 </ul>
 
 <p>Predictive Healthcare Analytics System</p>
+<p>Doctor Alerts: Active</p>
 """
 
 if __name__ == "__main__":

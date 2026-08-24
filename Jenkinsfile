@@ -5,14 +5,16 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t RemotePatientMonitoring .'
+                sh 'docker build -t remotepatientmonitoring .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker rm -f RemotePatientMonitoring-container || true'
-                sh 'docker run -d -p 5000:5000 --name RemotePatientMonitoring-container RemotePatientMonitoring'
+                sh '''
+                    docker rm -f remotepatientmonitoring-container || true
+                    docker run -d -p 5000:5000 --name remotepatientmonitoring-container remotepatientmonitoring
+                '''
             }
         }
     }

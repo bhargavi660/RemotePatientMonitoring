@@ -3,35 +3,23 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                echo 'Cloning repository...'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t remote-patient-monitoring .'
-            }
-        }
-
-        stage('Stop Old Container') {
-            steps {
-                bat 'docker stop remote-patient-container || exit 0'
-                bat 'docker rm remote-patient-container || exit 0'
+                bat 'docker build -t RemotePatientMonitoring .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                bat 'docker run -d -p 5000:5000 --name remote-patient-container remote-patient-monitoring'
+                bat 'docker rm -f RemotePatientMonitoring-container || exit /b 0'
+                bat 'docker run -d -p 5000:5000 --name RemotePatientMonitoring-container RemotePatientMonitoring'
             }
         }
     }
 
     post {
         success {
-            echo 'Application deployed successfully!'
+            echo 'Remote Patient Monitoring application deployed successfully!'
         }
 
         failure {

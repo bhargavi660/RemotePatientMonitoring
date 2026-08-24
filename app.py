@@ -61,7 +61,7 @@ def home():
         }
 
         .card {
-            background: purple;
+            background: brown;
             padding: 25px 15px;
             border-radius: 18px;
             text-align: center;
